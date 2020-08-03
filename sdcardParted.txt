@@ -1,0 +1,41 @@
+sudo fdisk /dev/sdc
+Type the following parameters (each followed by <ENTER>):
+p
+d [lists the current partitions]
+[to delete existing partitions. Repeat this until no unnecessary partitions
+are reported by the 'p' command to start fresh.]
+n
+p
+1
+20480
+1024000
+p [create a new partition]
+[create a primary partition - use for both partitions]
+[the first partition]
+[starting at offset sector]
+[size for the first partition to be used for the boot images]
+[to check the partitions]
+n
+p
+2
+1228800
+<enter>
+p
+w
+[starting at offset sector, which leaves enough space for the kernel,
+the bootloader and its configuration data]
+[using the default value will create a partition that extends to
+the last sector of the media]
+[to check the partitions]
+[this writes the partition table to the media and fdisk exits]
+
+
+
+
+sudo dd if=u-boot-dtb.imx of=/dev/sdc bs=512 seek=2 conv=fsync
+
+sudo mkfs.vfat /dev/sdx1
+mkdir mountpoint
+sudo mount /dev/sdx1 mountpoint
+
+sudo mkfs.ext4 /dev/sdx2
