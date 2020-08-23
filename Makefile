@@ -97,6 +97,7 @@ linux-imx-clean: linux-defconfig-clean
 	$(MAKE) -C $(LINUX_PATH) $(LINUX_COMMON_FLAGS) clean
 
 .PHONY: linux-defconfig-clean
+linux-defconfig-clean:
 	rm -f $(LINUX_PATH)/.config
 
 ################################################################################
