@@ -13,7 +13,7 @@ UBOOT_PATH          ?= $(CURDIR)/uboot-imx
 LINUX_PATH			?= $(CURDIR)/linux-imx
 OPTEE_OS_PATH			?= $(CURDIR)/imx-optee-os
 OPTEE_CLIENT_PATH		?= $(CURDIR)/optee_client
-OPTEE_CLIENT_EXPORT		?= $(OPTEE_CLIENT_PATH)/out/export
+OPTEE_CLIENT_EXPORT		?= $(OPTEE_CLIENT_PATH)/out/export/usr
 OPTEE_TEST_PATH			?= $(CURDIR)/optee_test
 OPTEE_TEST_OUT_PATH		?= $(CURDIR)/optee_test/out
 OPTEE_EXAMPLES_PATH		?= $(CURDIR)/optee_examples
@@ -53,7 +53,7 @@ UBOOT_FLAGS ?= CROSS_COMPILE=$(CROSS_COMPILE) ARCH=$(ARCH)
 .PHONY: uboot-imx
 uboot-imx: uboot-imx-defconfig
 	$(MAKE) -C $(UBOOT_PATH) $(UBOOT_FLAGS)
-	cp -f u-boot-dtb.imx $(OUT_PATH)
+	cp -f $(UBOOT_PATH)/u-boot-dtb.imx $(OUT_PATH)
 
 .PHONY: uboot-imx-defconfig
 uboot-imx-defconfig:
